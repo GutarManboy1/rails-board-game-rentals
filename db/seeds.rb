@@ -1,6 +1,7 @@
 require 'open-uri'
 require "nokogiri"
 require "csv"
+require "faker"
 
 filepath = "db/utf8.csv"
 
@@ -27,3 +28,6 @@ num_players = row['min_players'] == row['max_players'] ? row['max_players'] : "#
   end
 end
 
+# 20.times do
+#   user = User.new()
+# end
