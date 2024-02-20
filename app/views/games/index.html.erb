@@ -5,8 +5,13 @@
   </div>
 </div>
 <div class="container mt-3 mb-3">
-  <a class="btn btn-circle btn-primary add-game-button" href="#" >Add game</a>
+  <a class="btn btn-primary add-game-button" href="#" >Add game</a>
 </div>
+<div class="container search-container">
+  <input type="text" id="search-input" placeholder="Search game...">
+  <button type="button" id="search-button">Search</button>
+</div>
+<div id="search-results"></div>
 <div class="container mt-3">
   <div class="cards">
     <% @games.each do |game| %>
