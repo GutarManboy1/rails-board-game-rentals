@@ -5,7 +5,7 @@
   </div>
 </div>
 <div class="container mt-3 mb-3">
-  <a class="btn btn-primary add-game-button" href="#" >Add game</a>
+  <a class="btn btn-circle btn-primary add-game-button" href="#" >Add game</a>
 </div>
 <div class="container mt-3">
   <div class="cards">
@@ -13,7 +13,7 @@
       <div class="card-product">
         <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
         <div class="card-product-infos">
-          <h2> <%= game.name %> </h2>
+          <h2> <%= link_to game.name, game_path(game) %> </h2>
           <p> <%= game.description %> </p>
         </div>
       </div>

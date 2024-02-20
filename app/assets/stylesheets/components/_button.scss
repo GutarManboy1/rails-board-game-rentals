@@ -1,0 +1,16 @@
+.btn-circle {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  transition: all 0.3s ease-in-out;
+  padding: 0; /* Remove default padding */
+  font-size: 16px; /* Adjust font size */
+  line-height: 50px; /* Center text vertically */
+}
+
+.btn-circle:hover {
+  width: 60px;
+  height: 60px;
+  font-size: 18px; /* Adjust font size on hover */
+  line-height: 60px; /* Center text vertically on hover */
+}
