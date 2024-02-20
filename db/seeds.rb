@@ -29,7 +29,12 @@ comments = [
   "Old game, but pieces have been re-painted.",
   "This version is a spin on the old classic!",
   "All your base are belong to us.",
-  "The dog chewed up the box, but the pieces are all there."
+  "The dog chewed up the box, but the pieces are all there.",
+  "Great condition, lots of fun!",
+  "Used, but otherwise good condition.",
+  "Plz help me pay my rent....",
+  "Two cards have been replaced with paper slips.",
+  "Who lives in a pineapple under the sea?"
 ]
 
 CSV.foreach(filepath, headers: :first_row) do |row|
@@ -56,12 +61,13 @@ num_players = row['min_players'] == row['max_players'] ? row['max_players'] : "#
 end
 
 30.times do
-  user = User.new(name: Faker::Internet.username, email: Faker::Internet.email)
+  user = User.new(username: Faker::Internet.username, email: Faker::Internet.email, password: "123456")
   user.save!
 end
 
 200.times do
-  com = comments[rand(25)]
+  com = comments[rand(30)]
+  game_num = rand(1..100)
   dollars = rand(6)
   cents = rand(100)
   cost = "#{dollars}.#{cents}".to_f
@@ -69,8 +75,11 @@ end
     pending_request: false,
     comment: com,
     price: cost,
-    game_id: rand(100),
+    game_id: game_num,
     user_id: rand(1..30)
   )
-  offer.save
+  game = Game.find(game_num)
+  game.copies += 1
+  game.save!
+  offer.save!
 end
