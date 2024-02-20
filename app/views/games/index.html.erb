@@ -1,13 +1,15 @@
-<div class="banner" style="background-image: linear-gradient(rgba(255,100,0,1),rgba(255,100,0,1))">
+<div class="banner pt-2 pb-2" style="background-image: linear-gradient(rgba(255,100,0,1),rgba(255,100,0,1))">
   <div class="container">
     <h1>All games for rent</h1>
     <p>Change your life and play boardgames!</p>
-    <a class="btn btn-primary add-game-button" href="#" >Add game</a>
   </div>
 </div>
-<div class="container">
-  <% @games.each do |game| %>
-    <div class="cards">
+<div class="container mt-3 mb-3">
+  <a class="btn btn-primary add-game-button" href="#" >Add game</a>
+</div>
+<div class="container mt-3">
+  <div class="cards">
+    <% @games.each do |game| %>
       <div class="card-product">
         <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
         <div class="card-product-infos">
@@ -15,6 +17,6 @@
           <p> <%= game.description %> </p>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
