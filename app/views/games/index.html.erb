@@ -16,7 +16,7 @@
   <div class="cards">
     <% @games.each do |game| %>
       <div class="card-product">
-        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+        <img src=<%= game.string_url %> />
         <div class="card-product-infos">
           <h2> <%= link_to game.name, game_path(game) %> </h2>
           <p> <%= game.description %> </p>
