@@ -19,7 +19,7 @@
         <img src=<%= game.string_url %> />
         <div class="card-product-infos">
           <h2> <%= link_to game.name, game_path(game) %> </h2>
-          <p> <%= game.description %> </p>
+          <p> <%= game.description.html_safe %> </p>
         </div>
       </div>
     <% end %>
