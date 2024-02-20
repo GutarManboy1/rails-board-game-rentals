@@ -10,8 +10,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 0) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_19_090205) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "bookings", force: :cascade do |t|
+    t.string "status"
+    t.date "start_date"
+    t.date "end_date"
+    t.bigint "user_id", null: false
+    t.bigint "offer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["offer_id"], name: "index_bookings_on_offer_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "copies"
+    t.string "players"
+    t.string "play_time"
+    t.string "genre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "offers", force: :cascade do |t|
+    t.boolean "pending_request"
+    t.string "comment"
+    t.string "picture"
+    t.float "price"
+    t.bigint "game_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_offers_on_game_id"
+    t.index ["user_id"], name: "index_offers_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "bookings", "offers"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "offers", "games"
+  add_foreign_key "offers", "users"
 end
