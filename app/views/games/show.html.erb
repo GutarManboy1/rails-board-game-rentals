@@ -1,4 +1,18 @@
-<h1><%= @game.name %></h1>
+<div class="banner pt-2 pb-2" style="background-image: linear-gradient(rgba(255,100,0,1),rgba(255,100,0,1))">
+  <div class="container">
+    <h1><%= @game.name %></h1>
+  </div>
+</div>
+<div class="container">
+<div class="show-card-product">
+  <img src=<%= @game.string_url %>>
+  <div class="show-card-product-infos">
+    <h2>Product name</h2>
+    <p>Product description with <strong>relevant info</strong> only.</p>
+  </div>
+</div>
+</div>
+
 <h2><%= @game.players %></h2>
 <h2><%= @game.play_time %></h2>
 <h2><%= @game.description %></h2>
