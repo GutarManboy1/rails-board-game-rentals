@@ -15,13 +15,15 @@
 <div class="container mt-3">
   <div class="cards">
     <% @games.each do |game| %>
-      <div class="card-product">
-        <img src=<%= game.string_url %> />
-        <div class="card-product-infos">
-          <h2> <%= link_to game.name, game_path(game) %> </h2>
-          <p> <%= game.description.html_safe %> </p>
+      <%= link_to game_path(game), class: "game-link" do %>
+        <div class="card-product" style="position: relative;">
+          <img src=<%= game.string_url %> />
+          <div class="card-product-infos">
+            <%= game.name %>
+            <p> <%= game.description %> </p>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>
