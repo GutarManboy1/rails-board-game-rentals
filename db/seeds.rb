@@ -26,3 +26,4 @@ num_players = row['min_players'] == row['max_players'] ? row['max_players'] : "#
     game.save!
   end
 end
+
