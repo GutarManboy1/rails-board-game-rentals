@@ -9,16 +9,35 @@
 <div class="show-card-product">
   <img src=<%= @game.string_url %>>
   <div class="show-card-product-infos">
-      <h2>Players:<%= @game.players %></h2>
-      <h2>Time:<%= @game.play_time %>minutes</h2>
-      <h2>Copies Available:<%= @game.copies %></h2>
-      <h2>Genre:<%= @game.genre%></h2>
-      <h2 class="collapsible onclick=toggleContent"><%= @game.description %></h2>
+      <h2>Players: <%= @game.players %></h2>
+      <h2>Time: <%= @game.play_time %>minutes</h2>
+      <h2>Copies Available: <%= @game.copies %></h2>
+      <h2>Genre: <%= @game.genre%></h2>
+      <h2><%= @game.description.split(" ").first(20).join(" ")%>...</h2><!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+    See More
+</button>
+
+
   </div>
 </div>
 </div>
 
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"><%= @game.name %></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= @game.description %>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="container">
 <div class="cards">
   <%@game.offers.each do |offer|  %>
