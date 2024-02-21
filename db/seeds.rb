@@ -37,6 +37,8 @@ comments = [
   "Who lives in a pineapple under the sea?"
 ]
 
+statuses = ["Approved", "Approved", "Approved", "Denied", "Pending", "Pending"]
+
 CSV.foreach(filepath, headers: :first_row) do |row|
 game = Game.find_by(name: row['names'])
 game_id = row['game_id']
@@ -82,4 +84,22 @@ end
   game.copies += 1
   game.save!
   offer.save!
+end
+
+200.times do
+  status = statuses[rand(6)]
+  today = Date.today
+  start = today + rand(100)
+  finish = start + rand(14)
+  offer = rand(1..200)
+  booking = Booking.new(
+    status: status,
+    start_date: start,
+    end_date: finish,
+    user_id: rand(1..30),
+    offer_id: offer
+  )
+  current_offer = Offer.find(offer)
+  current_offer.update!(pending_request: status == 'Pending')
+  booking.save!
 end

@@ -1,0 +1,20 @@
+<h1>Dashboard</h1>
+<h2>Wishlist</h2>
+
+<% @bookings_as_borrower.each do |request| %>
+  <div style="display: flex; height: 100px; width: 700px; border: 1px solid #ccc; margin-bottom: 10px;">
+    <img src="<%= request.offer.game.string_url %>" alt="" style="height: 100px; width: 100px; margin: 0 10px 0 0;">
+    <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+      <div style="height: 40px; margin: 5px 0;">
+        <p><%= request.offer.game.name %></p>
+      </div>
+      <div style="height: 50px;">
+        <p><%= request.start_date %> ~ <%= request.end_date %></p>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; justify-content: space-between;">
+      <p>from <%= request.offer.user.username %></p>
+      <p>Status: <%= request.status %></p>
+    </div>
+  </div>
+<% end %>
