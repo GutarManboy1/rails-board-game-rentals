@@ -4,18 +4,14 @@
 }
 
 .approved {
-  background-color: rgb(40, 187, 40);
   border-radius: 4px;
   color: white;
   animation: excited_text 1s infinite;
-  padding: 4px 6px 4px 6px;
 }
 
 .denied {
-  background-color: rgb(255, 0, 0);
   border-radius: 4px;
   color: white;
-  padding: 4px 6px 4px 6px;
 }
 
 @keyframes sway {

@@ -24,9 +24,9 @@
             <% if request.status == "Pending" %>
               <p class="pending"><%= request.status %></p>
             <% elsif request.status == "Approved" %>
-              <p class="approved"><%= request.status %></p>
+              <p class="btn btn-success approved"><%= request.status %></p>
             <% else %>
-              <p class="denied"><%= request.status %></p>
+              <p class="btn btn-danger denied"><%= request.status %></p>
             <% end %>
           </div>
         </div>
@@ -48,7 +48,7 @@
             <p>Price: $<%= price_formatted %></p>
           </div>
           <div>
-            <p>Something here</p>
+            <p class="btn btn-primary edit-offer-btn">Edit Offer</p>
             <div></div>
             <% if offer.pending_request %>
               <p class="approved">Request!</p>
