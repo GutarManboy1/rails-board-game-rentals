@@ -1,7 +1,6 @@
-<div class="banner pt-2 pb-2" style="background-image: linear-gradient(rgba(255,100,0,1),rgba(255,100,0,1))">
+<div class="container">
   <div class="container">
     <h1><%= @game.name %></h1>
-    <%= link_to "All games", games_path, class: "btn btn-primary" %>
   </div>
 </div>
 <div class="container">
@@ -9,7 +8,7 @@
     <img src=<%= @game.string_url %>>
     <div class="show-card-product-infos">
       <h2>Players: <%= @game.players %></h2>
-      <h2>Time: <%= @game.play_time %>minutes</h2>
+      <h2>Time: <%= @game.play_time %> minutes</h2>
       <h2>Copies Available: <%= @game.copies %></h2>
       <h2>Genre: <%= @game.genre%></h2>
       <h2><%= @game.description.split(" ").first(20).join(" ")%>...</h2>
@@ -28,7 +27,7 @@
         <h1 class="modal-title fs-5" id="exampleModalLabel"><%= @game.name %></h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="white-space: pre-wrap;">
         <%= @game.description %>
       </div>
     </div>
