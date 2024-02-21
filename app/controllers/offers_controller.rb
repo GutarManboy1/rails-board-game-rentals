@@ -1,5 +1,5 @@
 class OffersController < ApplicationController
   def show
-    @offers = Offer.all
+    @offer = Offer.find(params[:id])
   end
 end
