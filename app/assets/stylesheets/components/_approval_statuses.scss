@@ -1,0 +1,56 @@
+.pending {
+  animation: sway 1s infinite;
+  color: gray;
+}
+
+.approved {
+  background-color: rgb(40, 187, 40);
+  border-radius: 4px;
+  color: white;
+  animation: excited_text 1s infinite;
+  padding: 4px 6px 4px 6px;
+}
+
+.denied {
+
+}
+
+@keyframes sway {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes excited_text {
+  0% {
+    transform: translateY(0) rotate(0) scaleX(1) scaleY(1);
+    animation-timing-function: ease-in;
+  }
+  10% {
+    transform: translateY(3px) rotate(0) scaleX(1.1) scaleY(0.8);
+  }
+  15% {
+    transform: translateY(3px) rotate(0) scaleX(1.1) scaleY(0.8);
+    animation-timing-function: ease-in;
+  }
+  35% {
+    transform: translateY(0) rotate(0) scaleX(1) scaleY(1);
+    animation-timing-function: ease-out;
+  }
+  65% {
+    transform: translateY(-8px) rotate(0);
+  }
+  70% {
+    transform: translateY(-8px) rotate(0);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+}
