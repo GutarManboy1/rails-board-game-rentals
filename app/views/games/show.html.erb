@@ -40,6 +40,7 @@
         <img src=<%=offer.game.string_url%> />
         <div class="card-product-infos">
           <h2> <%=offer.user.username %> </h2>
+          <p> <%= offer.price %> $ /day </p>
           <%= link_to "Book now", offer_path(offer), class: "btn btn-gradient" %>
         </div>
       </div>
