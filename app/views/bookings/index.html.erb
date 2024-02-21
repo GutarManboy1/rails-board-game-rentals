@@ -1,21 +1,63 @@
-<h1>Dashboard</h1>
-<h2>Wishlist</h2>
-<% @bookings_as_borrower.each do |request| %>
-  <div class="booking-card">
-    <div class="img-div">
-      <img src="<%= request.offer.game.string_url %>" alt="<%= request.offer.game.name %> cover art">
-    </div>
-    <div class="text-content">
-      <div>
-        <p><%= request.offer.game.name %></p>
-        <div></div>
-        <p>from <%= request.offer.user.username %></p>
-      </div>
-      <div>
-        <p><%= request.start_date %> ~ <%= request.end_date %></p>
-        <div></div>
-        <p>Status: <%= request.status %></p>
-      </div>
-    </div>
+<div class="banner pt-4 pb-4" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://cdn.midjourney.com/7fbf90f2-e8a8-432d-8c4d-7018f5c59b42/0_1.webp);">
+  <div class="container">
+    <h1 style="color:white">Dashboard</h1>
+    <p style="color:white">Your game world at a glance</p>
   </div>
-<% end %>
+</div>
+<div class="add-margins d-flex justify-content-center">
+  <div class="bookings-column">
+    <h2>My Wishlist</h2>
+    <% @bookings_as_borrower.reverse_each do |request| %>
+      <div class="booking-card">
+        <div class="img-div">
+          <img src="<%= request.offer.game.string_url %>" alt="<%= request.offer.game.name %> cover art">
+        </div>
+        <div class="text-content">
+          <div>
+            <p><%= request.offer.game.name %></p>
+            <div></div>
+            <p>Owner: <%= request.offer.user.username %></p>
+          </div>
+          <div>
+            <p><%= request.start_date %> ~ <%= request.end_date %></p>
+            <div></div>
+            <% if request.status == "Pending" %>
+              <p class="pending"><%= request.status %></p>
+            <% elsif request.status == "Approved" %>
+              <p class="btn btn-success approved"><%= request.status %></p>
+            <% else %>
+              <p class="btn btn-danger denied"><%= request.status %></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="my-games-column">
+    <h2>My Rentals</h2>
+    <% @bookings_as_owner.each do |offer| %>
+      <div class="my-game-card">
+        <div class="img-div">
+          <img src="<%= offer.game.string_url %>" alt="<%= offer.game.name %> cover art">
+        </div>
+        <div class="text-content">
+          <div>
+            <p><%= offer.game.name %></p>
+            <div></div>
+            <% price_formatted = sprintf('%.2f', offer.price) %>
+            <p>Price: $<%= price_formatted %></p>
+          </div>
+          <div>
+            <p class="btn btn-primary edit-offer-btn">Edit Offer</p>
+            <div></div>
+            <% if offer.pending_request %>
+              <p class="approved">Request!</p>
+            <% else %>
+              <p>No requests</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
