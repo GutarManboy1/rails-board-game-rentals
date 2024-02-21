@@ -1,5 +1,6 @@
 class OffersController < ApplicationController
   def show
-    @offers = Offer.all
+    @booking = Booking.new
+    @offer = Offer.find(params[:id])
   end
 end
