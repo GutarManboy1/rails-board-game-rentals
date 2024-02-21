@@ -1,0 +1,52 @@
+.booking-card {
+  display: flex;
+  flex-grow: 1;
+  height: 120px;
+  width: 720px;
+  border: 1px
+  solid #ccc;
+  margin-bottom: 10px;
+  box-shadow: 0 0 6px black;
+
+  .img-div {
+
+    height: 120px;
+    width: 120px;
+    min-width: 120px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0 10px 0 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 120px;
+    }
+  }
+
+  .text-content {
+    display: flex;
+    flex-direction: column;
+    min-width: 590px;
+    width: 590px;
+    padding: 10px;
+
+    div {
+
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      p {
+        max-width: 50%;
+        font-size: 16px;
+        flex-wrap: wrap;
+        margin: 0;
+      }
+    }
+  }
+}
