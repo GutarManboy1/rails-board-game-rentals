@@ -1,6 +1,6 @@
 <h1>Dashboard</h1>
 <h2>Wishlist</h2>
-
+<%= link_to "All games", games_path, class: "btn btn-primary" %>
 <% @bookings_as_borrower.each do |request| %>
   <div class="booking-card">
     <div class="img-div">
