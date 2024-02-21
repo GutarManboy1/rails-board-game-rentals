@@ -100,7 +100,6 @@ end
     offer_id: offer
   )
   current_offer = Offer.find(offer)
-  current_offer.pending_request = status == 'Pending'
-  current_offer.save!
+  current_offer.update!(pending_request: status == 'Pending')
   booking.save!
 end
