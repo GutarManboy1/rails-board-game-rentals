@@ -5,6 +5,12 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-product:hover {
+  transform: scale(1.05); /* Slightly increase the size */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Add a shadow for depth */
 }
 
 .card-product img {
