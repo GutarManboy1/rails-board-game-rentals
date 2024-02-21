@@ -9,18 +9,10 @@
   margin:10px;
 }
 
-.collapsible {
-  cursor: pointer;
-}
-
-.content {
-  display: none;
-}
-
 .show-card-product img {
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  object-fit: background;
 }
 
 .show-card-product h2 {
