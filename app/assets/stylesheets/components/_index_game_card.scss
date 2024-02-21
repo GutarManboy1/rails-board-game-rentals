@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-image: linear-gradient(to right, rgb(224, 213, 213), white);
 }
 
 .card-product:hover {
