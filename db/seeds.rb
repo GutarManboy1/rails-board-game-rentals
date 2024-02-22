@@ -56,6 +56,12 @@ num_players = row['min_players'] == row['max_players'] ? row['max_players'] : "#
     p image_url = document.root.xpath("boardgame").xpath("image").text
     description = document.root.xpath("boardgame").xpath("description").text
     cleaned_description = description.gsub(/<br\s*\/?>/, "\n")
+    cleaned_description = cleaned_description.gsub(/&quot;/, '"')
+    cleaned_description = cleaned_description.gsub(/&amp;/, '&')
+    cleaned_description = cleaned_description.gsub(/&ndash;/, '–')
+    cleaned_description = cleaned_description.gsub(/&auml;/, 'ä')
+    cleaned_description = cleaned_description.gsub(/&uuml;/, 'ü')
+    cleaned_description = cleaned_description.gsub(/&nbsp;/, ' ')
     game.string_url = image_url
     game.description = cleaned_description
     game.save!
