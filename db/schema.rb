@@ -66,11 +66,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_22_052835) do
     t.string "string_url"
   end
 
-  create_table "logins", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "offers", force: :cascade do |t|
     t.boolean "pending_request"
     t.string "comment"
