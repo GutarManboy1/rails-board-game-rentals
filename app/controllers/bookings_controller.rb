@@ -9,6 +9,15 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
+  def update
+    @booking = Booking.find(params[:id])
+    if @booking.update(booking_params)
+      redirect_to bookings_path
+    else
+      render :new, :unprocessable_entity
+    end
+  end
+
   def create
     @offer = Offer.find(params["offer_id"])
     @booking = Booking.new(booking_params)
@@ -19,13 +28,13 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to bookings_path
     else
-      render :new, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date)
+    params.require(:booking).permit(:status, :start_date, :end_date)
   end
 end
