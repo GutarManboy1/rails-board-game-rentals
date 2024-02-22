@@ -2,9 +2,6 @@
   display: flex;
   flex-grow: 1;
   height: 120px;
-  width: 720px;
-  border: 1px
-  solid #ccc;
   margin: 10px 10px 10px 10px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   background-image: linear-gradient(to right, rgb(224, 213, 213), white);
@@ -31,8 +28,7 @@
   .text-content {
     display: flex;
     flex-direction: column;
-    min-width: 590px;
-    width: 590px;
+    flex-grow: 1;
     padding: 10px;
 
     div {
