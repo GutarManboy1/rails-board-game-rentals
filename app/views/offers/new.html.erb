@@ -1,0 +1,5 @@
+<%= simple_form_for [@game current_user @offer] do |f| %>
+  <%= f.input :price %>
+  <%= f.input :comment %>
+  <%= f.input :photo, as: :file %>
+<% end %>
