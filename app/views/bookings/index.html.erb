@@ -58,6 +58,39 @@
           </div>
         </div>
       </div>
+      <div class="container">
+        <div class="bookings">
+          <% offer.bookings.each do |booking| %>
+            <div class="booking">
+              <div class='booking-left'>
+                <!-- if you're using cloudinary and activestorage -->
+                <div class="booking-info">
+                  <div class="booking-info-title">
+                    <%= booking.user.username %>
+                  </div>
+                  <div class="booking-info-details">
+                    <%= booking.start_date %> - <%= booking.end_date %>
+                  </div>
+                </div>
+              </div>
+              <div class="booking-actions">
+                <% if booking.status != "Approved" %>
+                  <%= simple_form_for booking do |f| %>
+                    <%= f.input :status, as: :hidden, input_html: { value: 'Approved'} %>
+                    <%= f.submit 'Accept', class: 'btn btn-info' %>
+                  <% end %>
+                  <%= simple_form_for booking do |f| %>
+                    <%= f.input :status, as: :hidden, input_html: { value: 'Denied'} %>
+                    <%= f.submit 'Reject', class: 'btn btn-light' %>
+                  <% end %>
+                <% else %>
+                  <p class='booking-tag'><%= booking.status %></p>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>
