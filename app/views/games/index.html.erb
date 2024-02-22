@@ -27,7 +27,8 @@
           <img src=<%= game.string_url %> />
           <div class="card-product-infos">
             <%= game.name %>
-            <p> <%= game.genre %> </p>
+            <p>Genre: <%= game.genre %> </p>
+            <p style="font-weight: bold;">Copies left: <%= game.copies %> </p>
           </div>
         </div>
       <% end %>
