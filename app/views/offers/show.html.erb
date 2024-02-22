@@ -7,9 +7,9 @@
   <% if @offer.photo.attached? %>
   <%= cl_image_tag(@offer.photo.key, width: 300, height: 300, crop: :fill, class: 'user-photo') %>
   <% end %>
-  <div>
+  <div style="flex-grow: 1;" >
   <%= render 'bookings/form' %>
-  <p><em>"<%= @offer.comment %>"</em> --<%= @offer.user.username %></p>
+  <p class="mt-2"><em>"<%= @offer.comment %>"</em> --<%= @offer.user.username %></p>
   </div>
 </div>
 
