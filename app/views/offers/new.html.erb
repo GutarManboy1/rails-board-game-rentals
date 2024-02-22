@@ -1,7 +1,16 @@
-<%= simple_form_for [@offer] do |f| %>
-  <%= f.association :game %>
-  <%= f.input :price %>
-  <%= f.input :comment %>
+<div class="banner pt-2 pb-2" style="background-image: linear-gradient(rgba(255,100,0,1),rgba(255,100,0,1))">
+  <div class="container">
+    <h1> Fill in the details of the game you would like to rent out. </h1>
+  </div>
+</div>
+<div class="container">
+</div>
+<div class="container booking-form">
+<%= simple_form_for [@offer], html: { class: 'form-class' } do |f| %>
+  <%= f.association :game, label: 'Select a game' %>
+  <%= f.input :price, label: 'Rental price per day' %>
+  <%= f.input :comment, placeholder: 'game\'s condition, your opinion, etc.' %>
   <%= f.input :picture, as: :file %>
   <%= f.submit %>
 <% end %>
+</div>
