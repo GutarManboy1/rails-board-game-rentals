@@ -1,7 +1,8 @@
 class BookingsController < ApplicationController
   def index
-    @bookings_as_borrower = Booking.where(user: current_user)
-    @bookings_as_owner = Offer.where(user: current_user)
+    @bookings_as_borrower = current_user.bookings
+    @bookings_as_owner = current_user.bookings_as_owner
+    @offers = current_user.offers
     @bookings = Booking.all
   end
 
@@ -28,6 +29,7 @@ class BookingsController < ApplicationController
     @booking.offer = @offer
 
     if @booking.save
+      @offer.pending_request = true
       redirect_to bookings_path
     else
       render :edit, status: :unprocessable_entity
