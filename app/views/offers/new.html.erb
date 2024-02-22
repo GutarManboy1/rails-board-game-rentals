@@ -10,7 +10,7 @@
   <%= f.association :game, collection: Game.order(name: :asc), label: 'Select a game' %>
   <%= f.input :price, label: 'Rental price per day' %>
   <%= f.input :comment, placeholder: 'game\'s condition, your opinion, etc.' %>
-  <%= f.input :picture, as: :file %>
+  <%= f.input :photo, as: :file %>
   <%= f.submit %>
 <% end %>
 </div>
