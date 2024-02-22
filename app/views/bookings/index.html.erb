@@ -38,7 +38,11 @@
     <% @offers.each do |offer| %>
       <div class="my-game-card">
         <div class="img-div">
-          <img src="<%= offer.game.string_url %>" alt="<%= offer.game.name %> cover art">
+          <% if offer.photo.attached? %>
+            <%= cl_image_tag(offer.photo.key, width: 300, height: 300, crop: "fit", class: 'user-photo') %>
+          <% else %>
+            <img src="<%= offer.game.string_url %>" alt="<%= offer.game.name %> cover art">
+          <% end %>
         </div>
         <div class="text-content">
           <div>
