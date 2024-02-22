@@ -1,7 +1,8 @@
 class BookingsController < ApplicationController
   def index
-    @bookings_as_borrower = Booking.where(user: current_user)
-    @bookings_as_owner = Offer.where(user: current_user)
+    @bookings_as_borrower = current_user.bookings
+    @bookings_as_owner = current_user.bookings_as_owner
+    @offers = current_user.offers
     @bookings = Booking.all
   end
 
@@ -21,11 +22,14 @@ class BookingsController < ApplicationController
   def create
     @offer = Offer.find(params["offer_id"])
     @booking = Booking.new(booking_params)
-
+    # manually setting dates for flatpickr
+    @booking.start_date = params[:booking][:start_date].split(" to ").first
+    @booking.end_date = params[:booking][:start_date].split(" to ").last
     @booking.user = current_user
     @booking.offer = @offer
 
     if @booking.save
+      @offer.pending_request = true
       redirect_to bookings_path
     else
       render :edit, status: :unprocessable_entity
