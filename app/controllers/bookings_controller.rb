@@ -22,7 +22,9 @@ class BookingsController < ApplicationController
   def create
     @offer = Offer.find(params["offer_id"])
     @booking = Booking.new(booking_params)
-
+    # manually setting dates for flatpickr
+    @booking.start_date = params[:booking][:start_date].split(" to ").first
+    @booking.end_date = params[:booking][:start_date].split(" to ").last
     @booking.user = current_user
     @booking.offer = @offer
 
