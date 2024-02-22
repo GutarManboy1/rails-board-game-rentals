@@ -35,7 +35,7 @@
   </div>
   <div class="my-games-column">
     <h2>My Rentals</h2>
-    <% @bookings_as_owner.each do |offer| %>
+    <% @offers.each do |offer| %>
       <div class="my-game-card">
         <div class="img-div">
           <img src="<%= offer.game.string_url %>" alt="<%= offer.game.name %> cover art">
@@ -50,8 +50,8 @@
           <div>
             <p class="btn btn-primary edit-offer-btn">Edit Offer</p>
             <div></div>
-            <% if offer.pending_request %>
-              <p class="approved">Request!</p>
+            <% if offer.pending_bookings? %>
+              <p>Request!</p>
             <% else %>
               <p>No requests</p>
             <% end %>
@@ -63,7 +63,6 @@
           <% offer.bookings.each do |booking| %>
             <div class="booking">
               <div class='booking-left'>
-                <!-- if you're using cloudinary and activestorage -->
                 <div class="booking-info">
                   <div class="booking-info-title">
                     <%= booking.user.username %>
@@ -74,7 +73,7 @@
                 </div>
               </div>
               <div class="booking-actions">
-                <% if booking.status != "Approved" %>
+                <% if booking.status == "Pending" %>
                   <%= simple_form_for booking do |f| %>
                     <%= f.input :status, as: :hidden, input_html: { value: 'Approved'} %>
                     <%= f.submit 'Accept', class: 'btn btn-info' %>
