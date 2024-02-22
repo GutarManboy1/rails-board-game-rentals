@@ -4,10 +4,13 @@
     <p> <%= @offer.comment %> </p>
   </div>
 </div>
-<div class="container">
-</div>
-<div class="container booking-form">
+<div class="container booking-form d-flex flex-align-center form-class">
+  <% if @offer.photo.attached? %>
+  <%= cl_image_tag(@offer.photo.key, width: 300, height: 300, crop: :fill, class: 'user-photo') %>
+  <% end %>
+  <div>
   <%= render 'bookings/form' %>
+  </div>
 </div>
 
 
