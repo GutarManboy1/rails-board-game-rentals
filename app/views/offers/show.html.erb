@@ -1,15 +1,15 @@
 <div class="banner pt-2 pb-2" style="background-image: linear-gradient(rgba(255,100,0,1),rgba(255,100,0,1))">
   <div class="container">
     <h1> Rent <%= @offer.game.name %> from <%= @offer.user.username %> </h1>
-    <p> <%= @offer.comment %> </p>
   </div>
 </div>
-<div class="container booking-form d-flex flex-align-center form-class">
+<div class="container form-container d-flex flex-align-center form-class">
   <% if @offer.photo.attached? %>
   <%= cl_image_tag(@offer.photo.key, width: 300, height: 300, crop: :fill, class: 'user-photo') %>
   <% end %>
-  <div>
+  <div style="flex-grow: 1;">
   <%= render 'bookings/form' %>
+  <p class="mt-2 "><em><%= @offer.comment %></em> -- <%= @offer.user.username %></p>
   </div>
 </div>
 

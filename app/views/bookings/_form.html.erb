@@ -1,4 +1,4 @@
-<%= simple_form_for [@offer, @booking], html: { class: 'form-class' } do |f| %>
+<%= simple_form_for [@offer, @booking] do |f| %>
   <%= f.input :start_date, as: :string, input_html: {data: {controller: "datepicker"}}, label: "Rental Dates"%>
   <%#= f.input :end_date, as: :string, input_html: {data: {controller: "datepicker"}} %>
   <%= f.button :submit, class: 'btn btn-primary' %>
