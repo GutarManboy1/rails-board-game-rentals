@@ -1,14 +1,14 @@
-<div class="banner pt-2 pb-2" style="background-image: linear-gradient(rgba(255,100,0,1),rgba(255,100,0,1))">
-  <div class="container">
-    <h1> Fill in the details of the game you would like to rent out. </h1>
+<div class="banner pt-4 pb-4" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://cdn.midjourney.com/52f3863c-4bee-4a51-91fa-28a7d50233ad/0_1.webp); background-position: center;">
+  <div class="container mt-2 mb-2">
+    <h1 style="color:white;"> Fill in the details of the game you would like to rent out. </h1>
+    <div class="container form-container">
+      <%= simple_form_for [@offer], html: { class: 'form-class' } do |f| %>
+        <%= f.association :game, collection: Game.order(name: :asc), label: 'Select a game' %>
+        <%= f.input :price, label: 'Rental price per day' %>
+        <%= f.input :comment, placeholder: 'game\'s condition, your opinion, etc.' %>
+        <%= f.input :photo, as: :file %>
+        <%= f.submit %>
+      <% end %>
+    </div>
   </div>
-</div>
-<div class="container form-container">
-<%= simple_form_for [@offer], html: { class: 'form-class' } do |f| %>
-  <%= f.association :game, collection: Game.order(name: :asc), label: 'Select a game' %>
-  <%= f.input :price, label: 'Rental price per day' %>
-  <%= f.input :comment, placeholder: 'game\'s condition, your opinion, etc.' %>
-  <%= f.input :photo, as: :file %>
-  <%= f.submit %>
-<% end %>
 </div>
