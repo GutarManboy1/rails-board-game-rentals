@@ -18,13 +18,20 @@
   border-radius: 4px;
 }
 
+.rented {
+  background-image: linear-gradient(to right, rgb(169, 166, 166), rgb(217, 217, 217));
+}
+
+.not-rented {
+  background-image: linear-gradient(to right, rgb(224, 213, 213), white);
+}
+
 .my-game-card {
   display: flex;
   flex-grow: 1;
   height: 120px;
   margin: 10px 10px 10px 10px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  background-image: linear-gradient(to right, rgb(224, 213, 213), white);
 
   .img-div {
 
