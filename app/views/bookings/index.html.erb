@@ -1,32 +1,34 @@
 <div class="banner pt-4 pb-4" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://cdn.midjourney.com/7fbf90f2-e8a8-432d-8c4d-7018f5c59b42/0_1.webp);">
   <div class="container">
     <h1 style="color:white">Dashboard</h1>
-    <p style="color:white">Your game world at a glance</p>
+    <h2 style="color:white">Your game world at a glance</h2>
   </div>
 </div>
 <div class="add-margins d-flex justify-content-center">
   <div class="bookings-column">
-    <h2>My Wishlist</h2>
+    <h2>Bookings</h2>
     <% @bookings_as_borrower.reverse_each do |request| %>
       <div class="booking-card">
         <div class="img-div">
           <img src="<%= request.offer.game.string_url %>" alt="<%= request.offer.game.name %> cover art">
         </div>
-        <div class="text-content">
-          <div>
-            <p><%= request.offer.game.name %></p>
-            <div></div>
-            <p>Owner: <%= request.offer.user.username %></p>
+        <div class="right-half">
+          <div class="text-area">
+            <div class="game-user">
+              <h4><%= request.offer.game.name %></h4>
+              <p>Owner: <%= request.offer.user.username %></p>
+            </div>
+            <h4><%= request.start_date.strftime('%b. %e') %> <i class="fa-solid fa-arrow-right-long"></i> <%= request.end_date.strftime('%b. %e') %></h4>
           </div>
           <div>
-            <p><%= request.start_date %> ~ <%= request.end_date %></p>
+
             <div></div>
             <% if request.status == "Pending" %>
-              <p class="pending"><%= request.status %></p>
+              <%= image_tag('pending.png', alt: 'pending', class: 'status-image') %>
             <% elsif request.status == "Approved" %>
-              <p class="btn btn-success approved"><%= request.status %></p>
+              <%= image_tag('approved.png', alt: 'approved', class: 'status-image') %>
             <% else %>
-              <p class="btn btn-danger denied"><%= request.status %></p>
+              <%= image_tag('denied.png', alt: 'denied', class: 'status-image') %>
             <% end %>
           </div>
         </div>
@@ -34,7 +36,7 @@
     <% end %>
   </div>
   <div class="my-games-column">
-    <h2>My Rentals</h2>
+    <h2>My Games</h2>
     <% @offers.each do |offer| %>
       <div class="my-game-card">
         <div class="img-div">
@@ -46,13 +48,14 @@
         </div>
         <div class="text-content">
           <div>
-            <p><%= offer.game.name %></p>
+            <h4><%= offer.game.name %></h4>
             <div></div>
             <% price_formatted = sprintf('%.2f', offer.price) %>
-            <p>Price: $<%= price_formatted %></p>
+            <h4>Price: $<%= price_formatted %></h4>
           </div>
           <div>
-            <p class="btn btn-primary edit-offer-btn">Edit Offer</p>
+            <i class="fa-solid fa-pencil mr-3 dashboard-icon"></i>
+            <i class="fa-solid fa-trash-can mx-3 dashboard-icon"></i>
             <div></div>
             <div class="dropdown d-flex justify-content-end">
               <% if offer.pending_bookings? %>
