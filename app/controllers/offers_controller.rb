@@ -21,9 +21,7 @@ class OffersController < ApplicationController
   end
 
 private
-
   def offer_params
     params.require(:offer).permit(:comment, :price, :photo, :user, :game_id)
   end
-
 end

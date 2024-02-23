@@ -28,7 +28,7 @@
           <div class="card-product-infos">
             <%= game.name %>
             <p>Genre: <%= game.genre %> </p>
-            <p style="font-weight: bold;">Copies left: <%= game.copies %> </p>
+            <p style="font-weight: bold;">Copies left: <%= game.offers.count %> </p>
           </div>
         </div>
       <% end %>
