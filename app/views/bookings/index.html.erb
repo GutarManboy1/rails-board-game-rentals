@@ -78,14 +78,14 @@
               <ul class="dropdown-menu">
                 <% offer.bookings.each do |booking| %>
                   <li>
-                    <div class="booking dropdown-item">
+                    <div class="booking dropdown-item list-partition">
                       <div class='booking-left'>
                         <div class="booking-info">
                           <div class="booking-info-title">
                             <%= booking.user.username %>
                           </div>
                           <div class="booking-info-details">
-                            <%= booking.start_date %> - <%= booking.end_date %>
+                            <p><%= booking.start_date.strftime('%b. %e') %> <i class="fa-solid fa-arrow-right-long"></i> <%= booking.end_date.strftime('%b. %e') %></p>
                           </div>
                         </div>
                       </div>
@@ -96,11 +96,11 @@
                             <%= f.submit 'Accept', class: 'btn btn-info' %>
                           <% end %>
                           <%= simple_form_for booking do |f| %>
-                            <%= f.input :status, as: :hidden, input_html: { value: 'Denied'} %>
+                            <%= f.input :status, as: :hidden, input_html: { value: 'Denied', class: 'btn btn-light'}%>
                             <%= f.submit 'Reject', class: 'btn btn-light' %>
                           <% end %>
                         <% else %>
-                          <p class='booking-tag'><%= booking.status %></p>
+                          <div class='booking-tag'><p><%= booking.status %></p></div>
                         <% end %>
                       </div>
                     </div>
