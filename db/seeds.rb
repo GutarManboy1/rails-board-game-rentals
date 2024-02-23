@@ -75,18 +75,20 @@ end
 
 200.times do
   com = comments[rand(30)]
-  game_num = rand(1..100)
+  # game_num = rand(1..100)
   dollars = rand(6)
   cents = rand(100)
   cost = "#{dollars}.#{cents}".to_f
   offer = Offer.new(
     pending_request: false,
     comment: com,
-    price: cost,
-    game_id: game_num,
-    user_id: rand(1..30)
+    price: cost
   )
-  game = Game.find(game_num)
+  game = Game.all.sample
+  offer.game = game
+  offer.user = User.all.sample
+
+  game = Game.find(game.id)
   game.copies += 1
   game.save!
   offer.save!
@@ -97,12 +99,12 @@ end
   today = Date.today
   start = today + rand(100)
   finish = start + rand(14)
-  offer = rand(1..200)
+  offer = Offer.all.sample.id
   booking = Booking.new(
     status: status,
     start_date: start,
     end_date: finish,
-    user_id: rand(1..30),
+    user_id: User.all.sample.id,
     offer_id: offer
   )
   current_offer = Offer.find(offer)
