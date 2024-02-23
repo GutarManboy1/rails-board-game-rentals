@@ -18,10 +18,10 @@
     <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
       <div class="container-fluid">
         <div class="d-flex align-content-center">
-          <%= link_to "#", class: "navbar-brand" do %>
+          <%= link_to games_path, class: "navbar-brand" do %>
             <%= image_tag "dicehouse.jpg" %>
           <% end %>
-          <h2 class="micro-5-regular pt-2 fs-1">DICE HOUSE</h2>
+          <%= link_to "DICE HOUSE", games_path, class: "h2 micro-5-regular pt-2 fs-1", style: "text-decoration: none;"%>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
