@@ -1,4 +1,4 @@
-<div class="banner pt-4 pb-4" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://cdn.midjourney.com/7fbf90f2-e8a8-432d-8c4d-7018f5c59b42/0_1.webp);">
+<div class="banner pt-4 pb-4" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://cdn.midjourney.com/52f3863c-4bee-4a51-91fa-28a7d50233ad/0_1.webp); background-position: center;">
   <div class="container">
     <h1 style="color:white"class="text-center fw-bold fs-1">Games for Rent</h1>
     <p style="color:white" class="text-center fst-italic">Change your Life and Play Boardgames!</p>
@@ -27,7 +27,8 @@
           <img src=<%= game.string_url %> />
           <div class="card-product-infos">
             <%= game.name %>
-            <p> <%= game.genre %> </p>
+
+            <p style="font-weight: bold;">Copies left: <%= game.offers.count %> </p>
           </div>
         </div>
       <% end %>

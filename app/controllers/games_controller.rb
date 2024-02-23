@@ -3,6 +3,7 @@ class GamesController < ApplicationController
 
   def index
     @games = Game.all
+    @games = Game.where('copies > ?', 0)
     if params[:q].present?
 
       @games = Game.search(params[:q])
@@ -11,5 +12,7 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+    @offer = Offer.find(params[:id])
+    @booking = Booking.new
   end
 end

@@ -7,4 +7,8 @@ class Offer < ApplicationRecord
   def pending_bookings?
     bookings.where(status: "Pending").count.positive?
   end
+
+  def is_rented?
+    rented
+  end
 end

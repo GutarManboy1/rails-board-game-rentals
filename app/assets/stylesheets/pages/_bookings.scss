@@ -4,10 +4,12 @@
 
 .bookings-column {
   text-align: center;
+  width: 50%;
 }
 
 .my-games-column {
   text-align: center;
+  width: 50%;
 }
 
 .edit-offer-btn {
@@ -16,16 +18,20 @@
   border-radius: 4px;
 }
 
+.rented {
+  background-image: linear-gradient(to right, rgb(169, 166, 166), rgb(217, 217, 217));
+}
+
+.not-rented {
+  background-image: linear-gradient(to right, rgb(224, 213, 213), white);
+}
+
 .my-game-card {
   display: flex;
   flex-grow: 1;
   height: 120px;
-  width: 720px;
-  border: 1px
-  solid #ccc;
   margin: 10px 10px 10px 10px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  background-image: linear-gradient(to right, rgb(224, 213, 213), white);
 
   .img-div {
 
@@ -46,11 +52,22 @@
     }
   }
 
+  .right-half {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .text-area {
+
+      justify-content: space-around;
+      align-items: end;
+    }
+  }
+
   .text-content {
     display: flex;
     flex-direction: column;
-    min-width: 590px;
-    width: 590px;
+    flex-grow: 1;
     padding: 10px;
 
     div {

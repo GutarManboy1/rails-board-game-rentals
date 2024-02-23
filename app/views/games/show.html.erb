@@ -33,14 +33,24 @@
   </div>
 </div>
 <div class="container mb-3 mt-3">
-  <div class="cards">
+  <div class="game-offers-cards">
     <%@game.offers.each do |offer|  %>
-      <div class="card-product">
-        <img src=<%=offer.game.string_url%> />
-        <div class="card-product-infos">
-          <h2> <%=offer.user.username %> </h2>
-          <p> <%= offer.price %> $ /day </p>
-          <%= link_to "Book now", offer_path(offer), class: "btn btn-gradient" %>
+      <div class="game-offers-card-product">
+        <% if offer.photo.attached? %>
+          <%= cl_image_tag(offer.photo.key, width: 300, height: 300, crop: "fit") %>
+        <% else %>
+          <img src="<%= offer.game.string_url %>" alt="<%= offer.game.name %> cover art">
+        <% end %>
+        <div class="game-offers-card-product-infos">
+          <h3><strong><%= offer.user.username %></strong></h3>
+          <h2> <%=offer.price %> $ /day </h2>
+          <p><%= offer.comment %></p>
+          <%#= link_to "Book now", offer_path(offer), class: "btn btn-gradient" %>
+        </div>
+        <div class="game-offers-card-product-infos">
+          <div class="container">
+            <%= render 'bookings/form' %>
+          </div>
         </div>
       </div>
     <% end %>

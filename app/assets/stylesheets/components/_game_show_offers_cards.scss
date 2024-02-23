@@ -1,0 +1,74 @@
+.game-offers-card-product {
+  overflow: hidden;
+  height: 240px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-image: linear-gradient(to right, rgb(224, 213, 213), white);
+}
+
+.game-offers-card-product img {
+  height: 100%;
+  width: 240px;
+  object-fit: cover;
+}
+
+.game-offers-card-product h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  vertical-align: top;
+  text-align: center;
+}
+.game-offers-card-product h3 {
+  font-size: 16px;
+  font-weight: normal;
+  margin-bottom: 8px;
+  vertical-align: top;
+  text-align: center;
+}
+
+.game-offers-card-product p {
+  font-size: 16px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  white-space: pre-line;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.game-offers-card-product .game-offers-card-product-infos {
+  padding: 16px;
+  align-items: center;
+}
+
+.btn-ghost {
+  color: #4A4A4A;
+  border: 1px solid #4A4A4A;
+  padding: 8px 24px;
+  font-weight: bold;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  margin: 4px;
+}
+
+.btn-ghost:hover {
+  opacity: 1;
+}
+
+.btn-flat {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: #670BFF;
+  transition: background 0.3s ease;
+}
+
+.btn-flat:hover {
+  background: #4D04C4;
+  color: white;
+}

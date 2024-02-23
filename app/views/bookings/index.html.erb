@@ -1,32 +1,34 @@
-<div class="banner pt-4 pb-4" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://cdn.midjourney.com/7fbf90f2-e8a8-432d-8c4d-7018f5c59b42/0_1.webp);">
+<div class="banner pt-4 pb-4" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://cdn.midjourney.com/52f3863c-4bee-4a51-91fa-28a7d50233ad/0_1.webp); background-position: center;">
   <div class="container">
     <h1 style="color:white">Dashboard</h1>
-    <p style="color:white">Your game world at a glance</p>
+    <h2 style="color:white">Your game world at a glance</h2>
   </div>
 </div>
 <div class="add-margins d-flex justify-content-center">
   <div class="bookings-column">
-    <h2>My Wishlist</h2>
+    <h2>Bookings</h2>
     <% @bookings_as_borrower.reverse_each do |request| %>
       <div class="booking-card">
         <div class="img-div">
           <img src="<%= request.offer.game.string_url %>" alt="<%= request.offer.game.name %> cover art">
         </div>
-        <div class="text-content">
-          <div>
-            <p><%= request.offer.game.name %></p>
-            <div></div>
-            <p>Owner: <%= request.offer.user.username %></p>
+        <div class="right-half">
+          <div class="text-area">
+            <div class="game-user">
+              <h4><%= request.offer.game.name %></h4>
+              <p>Owner: <%= request.offer.user.username %></p>
+            </div>
+            <h4><%= request.start_date.strftime('%b. %e') %> <i class="fa-solid fa-arrow-right-long"></i> <%= request.end_date.strftime('%b. %e') %></h4>
           </div>
           <div>
-            <p><%= request.start_date %> ~ <%= request.end_date %></p>
+
             <div></div>
             <% if request.status == "Pending" %>
-              <p class="pending"><%= request.status %></p>
+              <%= image_tag('pending.png', alt: 'pending', class: 'status-image') %>
             <% elsif request.status == "Approved" %>
-              <p class="btn btn-success approved"><%= request.status %></p>
+              <%= image_tag('approved.png', alt: 'approved', class: 'status-image') %>
             <% else %>
-              <p class="btn btn-danger denied"><%= request.status %></p>
+              <%= image_tag('denied.png', alt: 'denied', class: 'status-image') %>
             <% end %>
           </div>
         </div>
@@ -34,60 +36,79 @@
     <% end %>
   </div>
   <div class="my-games-column">
-    <h2>My Rentals</h2>
+    <h2>My Games</h2>
     <% @offers.each do |offer| %>
-      <div class="my-game-card">
+      <% if offer.is_rented? %>
+        <div class="my-game-card rented">
+      <% else %>
+        <div class="my-game-card not-rented">
+      <% end %>
         <div class="img-div">
-          <img src="<%= offer.game.string_url %>" alt="<%= offer.game.name %> cover art">
+          <% if offer.photo.attached? %>
+            <%= cl_image_tag(offer.photo.key, width: 300, height: 300, crop: "fit") %>
+          <% else %>
+            <img src="<%= offer.game.string_url %>" alt="<%= offer.game.name %> cover art">
+          <% end %>
         </div>
         <div class="text-content">
           <div>
-            <p><%= offer.game.name %></p>
-            <div></div>
+            <h4><%= offer.game.name %></h4>
+            <% if offer.is_rented? %>
+              <h4 style="color: gray;">[ R e n t e d      O u t ]</h4>
+            <% else %>
+              <div></div>
+            <% end %>
             <% price_formatted = sprintf('%.2f', offer.price) %>
-            <p>Price: $<%= price_formatted %></p>
+            <h4>Price: $<%= price_formatted %></h4>
           </div>
           <div>
-            <p class="btn btn-primary edit-offer-btn">Edit Offer</p>
+            <i class="fa-solid fa-pencil mr-3 dashboard-icon"></i>
+            <i class="fa-solid fa-trash-can mx-3 dashboard-icon"></i>
             <div></div>
-            <% if offer.pending_bookings? %>
-              <p>Request!</p>
-            <% else %>
-              <p>No requests</p>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="bookings">
-          <% offer.bookings.each do |booking| %>
-            <div class="booking">
-              <div class='booking-left'>
-                <div class="booking-info">
-                  <div class="booking-info-title">
-                    <%= booking.user.username %>
-                  </div>
-                  <div class="booking-info-details">
-                    <%= booking.start_date %> - <%= booking.end_date %>
-                  </div>
-                </div>
-              </div>
-              <div class="booking-actions">
-                <% if booking.status == "Pending" %>
-                  <%= simple_form_for booking do |f| %>
-                    <%= f.input :status, as: :hidden, input_html: { value: 'Approved'} %>
-                    <%= f.submit 'Accept', class: 'btn btn-info' %>
-                  <% end %>
-                  <%= simple_form_for booking do |f| %>
-                    <%= f.input :status, as: :hidden, input_html: { value: 'Denied'} %>
-                    <%= f.submit 'Reject', class: 'btn btn-light' %>
-                  <% end %>
-                <% else %>
-                  <p class='booking-tag'><%= booking.status %></p>
+            <div class="dropdown d-flex justify-content-end">
+              <% if offer.pending_bookings? %>
+                <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  New Request!
+                </button>
+              <% else %>
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Offers
+                </button>
+              <% end %>
+              <ul class="dropdown-menu">
+                <% offer.bookings.each do |booking| %>
+                  <li>
+                    <div class="booking dropdown-item">
+                      <div class='booking-left'>
+                        <div class="booking-info">
+                          <div class="booking-info-title">
+                            <%= booking.user.username %>
+                          </div>
+                          <div class="booking-info-details">
+                            <%= booking.start_date %> - <%= booking.end_date %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="booking-actions">
+                        <% if booking.status == "Pending" %>
+                          <%= simple_form_for booking do |f| %>
+                            <%= f.input :status, as: :hidden, input_html: { value: 'Approved'} %>
+                            <%= f.submit 'Accept', class: 'btn btn-info' %>
+                          <% end %>
+                          <%= simple_form_for booking do |f| %>
+                            <%= f.input :status, as: :hidden, input_html: { value: 'Denied'} %>
+                            <%= f.submit 'Reject', class: 'btn btn-light' %>
+                          <% end %>
+                        <% else %>
+                          <p class='booking-tag'><%= booking.status %></p>
+                        <% end %>
+                      </div>
+                    </div>
+                  </li>
                 <% end %>
-              </div>
+              </ul>
             </div>
-          <% end %>
+          </div>
         </div>
       </div>
     <% end %>

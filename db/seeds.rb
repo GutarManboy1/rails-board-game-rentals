@@ -109,3 +109,12 @@ end
   current_offer.update!(pending_request: status == 'Pending')
   booking.save!
 end
+
+bookings = Booking.all
+bookings.each do |booking|
+  if booking.status == "Approved"
+    offer = Offer.find(booking.offer_id)
+    offer.update!(rented: true)
+    offer.save!
+  end
+end
