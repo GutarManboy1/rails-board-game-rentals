@@ -1,19 +1,18 @@
 <div class="container mt-3">
   <div class="container">
-    <h1><%= @game.name %></h1>
+    <h1 class="text-center"><%= @game.name %></h1>
   </div>
 </div>
-<div class="container">
+<div class="container ">
   <div class="show-card-product">
-    <img src=<%= @game.string_url %>>
+    <img class="img-fluid img-thumbnail" src=<%= @game.string_url %>>
     <div class="show-card-product-infos">
-      <h2>Players: <%= @game.players %></h2>
-      <h2>Time: <%= @game.play_time %> minutes</h2>
-      <h2>Copies Available: <%= @game.copies %></h2>
-      <h2>Genre: <%= @game.genre%></h2>
-      <h2><%= @game.description.split(" ").first(20).join(" ")%>...</h2>
+      <h2><i class="icon fa-solid fa-people-group lh-lg"></i> <%= @game.players %> players</h2>
+      <h2><i class="icon fa-regular fa-clock lh-lg"></i> <%= @game.play_time %> minutes</h2>
+      <h2><i class="icon fa-solid fa-dice-d20 lh-lg"></i> <%= @game.genre%></h2>
+      <div class="lh-base" ><h2><i class="icon fa-regular fa-comment"></i> <%= @game.description.split(" ").first(25).join(" ")%>...</h2></div>
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+      <button type="button" class="btn btn-outline-info rounded mt-3 btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal" >
         See More
       </button>
     </div>
