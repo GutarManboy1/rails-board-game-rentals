@@ -12,13 +12,13 @@
 
 .show-card-product img {
   height: 100%;
-  width: 100%;
+ // width: 100%; uncomment this to have the image stretch
   object-fit: background;
 }
 
 .show-card-product h2 {
   font-size: 16px;
-  font-weight: bold;
+  font-weight: normal;
   margin: 0;
 }
 
