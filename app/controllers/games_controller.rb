@@ -12,5 +12,7 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+    @offer = Offer.find(params[:id])
+    @booking = Booking.new
   end
 end
